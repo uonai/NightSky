@@ -19,10 +19,11 @@ namespace NightSky
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             //  var connection = Configuration.GetConnectionString("DefaultConnection") ?? "testingconnection";
-            var connection = "Server=localhost\\MSSQLSERVER01;Database=master;Trusted_Connection=True;";
-            services.AddDbContext<MyDbContext>(options => options.UseSqlServer(connection));
+            var connection = "";
+            services.AddDbContext<MyDbContext>(options => options.UseSqlServer("Server=DESKTOP-32N87F3\\MSSQLSERVER01;Database=master;Trusted_Connection=True;MultipleActiveResultSets=true"));
             return services.BuildServiceProvider();
         }
+
 
         public void Configure(IServiceProvider serviceProvider)
         {
