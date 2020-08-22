@@ -17,6 +17,7 @@ namespace NightSky
     {
         public static void Main(string[] args)
         {
+           
             var host = CreateWebHostBuilder(args).Build();
 
             SeedDatabase(host);
