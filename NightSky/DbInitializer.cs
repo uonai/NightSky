@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NightSkyPopulateDatabase;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,22 +25,16 @@ namespace NightSky
         //    var stars = File.ReadLines(@"StarData.csv").Select(a => a.Split(';'));
        //     logger.LogInformation(stars.ToString());
 
-            //if (context.Universe.Any())
-          //  {
-         //       logger.LogInformation("Db already seeded");
-          //      return;
-         //   }
+            if (context.Universe.Any() && context.Users.Any())
+            {
+                logger.LogInformation("Db already seeded");
+                return;
+            }
 
             logger.LogInformation("Begin seeding db");
 
-        
-
-        
-
             string csvFile = @"C:\Users\csmcc\source\repos\NightSky\NightSky\StarData.csv";
-            string[] lines = File.ReadAllLines(csvFile);
-
-           
+            string[] lines = File.ReadAllLines(csvFile); 
 
             var query = from star in lines
                         let data = star.Split(',')
@@ -87,6 +82,15 @@ namespace NightSky
                 context.Universe.Add(star);
                 Console.WriteLine(star);
             }
+
+            var user = new User
+            {
+                emailAddress = "testuser@gmail.com",
+                password = "test123",
+                role = 1
+            };
+
+            context.Users.Add(user);
 
           //  context.Universe.Add(star);
           //  context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Universe] ON");

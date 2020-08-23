@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NightSkyPopulateDatabase;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,10 +17,12 @@ namespace NightSky
         }
 
         public virtual DbSet<Star> Universe { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Star>().ToTable("Universe");
+            modelBuilder.Entity<User>().ToTable("Users");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
