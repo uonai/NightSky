@@ -94,14 +94,10 @@ namespace NightSky
 
           //  context.Universe.Add(star);
           //  context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Universe] ON");
-
             context.SaveChanges();
 
           //  context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Universe] OFF");
-
-
             logger.LogInformation("Done seeding db");
-
         }
     }
 }
